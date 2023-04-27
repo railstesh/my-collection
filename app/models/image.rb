@@ -1,7 +1,10 @@
 class Image < ApplicationRecord
   belongs_to :collection, optional: true
-  has_many :comments
-  validates :title, :url, presence: true
+
+  validates :title, :description, :url, presence: true
+  validates :url, format: { with: URI.regexp }, if: Proc.new { url.present? }
+
+  has_many :comments, dependent: :destroy
 
   def self.picture_of_the_day
     Image.find_by(is_picture_of_the_day: true, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)

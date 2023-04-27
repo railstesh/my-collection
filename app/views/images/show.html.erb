@@ -7,6 +7,7 @@
       <label class="text-nowrap fw-semibold">Collection : </label>
       <%= select_tag "add_to_collection", options_from_collection_for_select(Collection.all, :id, :name, @image.collection_id), class: 'form-select ms-2', prompt: 'Select ...', data: { image_id: @image.id } %>
       <%= link_to 'Edit', edit_image_path(@image), class: 'btn btn-primary ms-2'%>
+      <%= link_to 'Delete', image_path(@image), class: 'ms-2 btn btn-primary', method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
   </ol>
 </nav>

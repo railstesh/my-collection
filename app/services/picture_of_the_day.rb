@@ -4,7 +4,7 @@ require 'json'
 class PictureOfTheDay
   def fetch_picture
     image_attributes = fetch_image_attributes
-    Image.create(image_attributes)
+    Image.picture_of_the_day or Image.create(image_attributes)
   end
 
   private
