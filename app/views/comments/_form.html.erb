@@ -1,0 +1,17 @@
+<%= form_for @comment do |form| %>
+  <%= form.hidden_field :image_id, value: @image.id %>
+  <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+    <div class="d-flex flex-start w-100">
+      <img class="rounded-circle shadow-1-strong me-3"
+        src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1682498256~exp=1682498856~hmac=17be2e4d208b71d6df007925be0453ec01ef519bb91f21cae2c2f9447fddaab9" alt="avatar" width="40"
+        height="40" />
+      <div class="form-outline w-100">
+        <%= form.text_area :body, class:"form-control", id:"textAreaExample", rows:"4",
+          style:"background: #fff;", placeholder:"Write comment..."%>
+      </div>
+    </div>
+    <div class="float-end mt-2 pt-1">
+      <%= form.submit "Post comment", class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+<% end %>

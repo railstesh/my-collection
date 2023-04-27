@@ -1,0 +1,29 @@
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+    <li class="breadcrumb-item active"><a>Collections</a></li>
+    <li class="ms-auto"><a href="<%= new_collection_path %>" class="btn btn-primary">Add New Collection</a></li>
+  </ol>
+</nav>
+  
+<div class="container text-center pt-3">
+  <% if Collection.count.zero? %>
+    <div class="alert alert-primary" role="alert">
+      No collections found! You can create one ... <a href="<%= new_collection_path %>">Add Collection</a>
+    </div>
+  <% else %>
+    <div class="row">
+      <% Collection.all.each do |collection| %>
+        <div class="col-lg-4 col-md-12 mb-3">
+          <div class="card h-100">
+            <img class="h-100" src="<%= collection.thumbnail_url %>" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title"><%= collection.name.titleize %></h5>
+              <a href="<%= collection_path(collection) %>" class="btn btn-primary">View Collection</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

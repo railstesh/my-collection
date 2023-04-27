@@ -1,0 +1,42 @@
+<main>
+  <section class="py-2 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Picture of the Day</h1>
+        <p class="lead text-muted">Want to see something amazing? Our Picture of the Day from <b>NASA</b> is waiting for you! Click to reveal today's jaw-dropping photo.</p>
+        <p>
+          <% if Image.picture_of_the_day %>
+            <a href="<%= image_path(Image.picture_of_the_day) %>" class="btn btn-primary my-2 reveal_picture">Show Picture of the Day</a>
+          <% else %>
+            <a id="reveal-potd" href="#" class="btn btn-primary my-2 reveal_picture">Reveal Picture</a>
+          <% end%>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-5 text-center container d-none">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <%= render 'picture_of_the_day/image' %>
+  </section>
+
+  <div class="container text-center">
+    <h1 class="fw-light mb-5">Collections</h1>
+    <div class="row">
+      <% Collection.all.each do |collection| %>
+        <div class="col-lg-4 col-md-12 mb-3">
+          <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp" class="card-img-top" alt="Peaks Against the Starry Sky">
+            <div class="card-body">
+              <h5 class="card-title"><%= collection.name.titleize %></h5>
+              <p class="text-muted"><%= collection.description.capitalize %></p>
+              <a href="<%= collection_path(collection) %>" class="btn btn-primary">View Collection</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

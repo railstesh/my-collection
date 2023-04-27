@@ -1,0 +1,30 @@
+<%= form_with(model: @collection) do |form| %>
+  <% if @collection.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+      <ul>
+        <% collection.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :thumbnail_url, class: "form-label" %>
+    <%= form.text_field :thumbnail_url, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>
