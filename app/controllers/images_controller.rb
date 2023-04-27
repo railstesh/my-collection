@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ImagesController < ApplicationController
-  before_action :set_image, only: %i[show edit update destroy add_to_collection]
+  before_action :set_image, only: %i[show edit update destroy]
 
   # GET /images or /images.json
   def index
@@ -19,7 +19,9 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/1/edit
-  def edit; end
+  def edit
+    redirect_to image_path(@image) and return if @image.is_picture_of_the_day?
+  end
 
   # POST /images or /images.json
   def create
@@ -50,6 +52,8 @@ class ImagesController < ApplicationController
 
   # DELETE /images/1 or /images/1.json
   def destroy
+    redirect_to image_path(@image) and return if @image.is_picture_of_the_day?
+
     @image.destroy
 
     respond_to do |format|
