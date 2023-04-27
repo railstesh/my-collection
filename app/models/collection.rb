@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Collection < ApplicationRecord
   has_many :images
 
   validates :name, :thumbnail_url, :description, presence: true
-  validates :thumbnail_url, format: { with: URI.regexp }, if: Proc.new { thumbnail_url.present? }
+  validates :thumbnail_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, if: proc { thumbnail_url.present? }
 
   before_destroy :update_images
 

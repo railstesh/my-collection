@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'json'
 
@@ -9,8 +11,7 @@ class PictureOfTheDay
 
   private
 
-  API_KEY = 'c41Mlbefn95QzZDraVVsGLG49v1aq5BKBgAVYlgB'
-  API_URL = "https://api.nasa.gov/planetary/apod?api_key=#{API_KEY}"
+  API_URL = "#{ENV['NASA_API_URL']}?api_key=#{ENV['NASA_API_KEY']}"
 
   def fetch_image_attributes
     uri = URI(API_URL)

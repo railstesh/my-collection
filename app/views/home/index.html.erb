@@ -25,11 +25,11 @@
   <% if Collection.count.positive? %>
     <div class="container text-center">
       <h1 class="fw-light mb-5">Collections</h1>
-      <div class="row">
+      <div class="row ">
         <% Collection.all.each do |collection| %>
           <div class="col-lg-4 col-md-12 mb-3">
             <div class="card">
-              <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp" class="card-img-top" alt="Peaks Against the Starry Sky">
+              <img src="<%= collection.thumbnail_url || "https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp" %>" class="card-img-top" alt="Peaks Against the Starry Sky">
               <div class="card-body">
                 <h5 class="card-title"><%= collection.name.titleize %></h5>
                 <p class="text-muted"><%= collection.description.capitalize %></p>

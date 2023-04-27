@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Image < ApplicationRecord
   belongs_to :collection, optional: true
 
   validates :title, :description, :url, presence: true
-  validates :url, format: { with: URI.regexp }, if: Proc.new { url.present? }
+  validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp }, if: proc { url.present? }
 
   has_many :comments, dependent: :destroy
 

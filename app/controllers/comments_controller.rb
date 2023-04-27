@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to image_url(@comment.image), notice: "Comment was successfully added." }
-      end
+      format.html { redirect_to image_url(@comment.image), notice: 'Comment was successfully added.' } if @comment.save
     end
   end
 
